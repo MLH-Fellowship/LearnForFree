@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from . import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # root/index
+    path('', views.index, name='index'),
+    # ex: search/javascript/
+    path('search/<str:keywords>/', views.results),
+    path('admin/', admin.site.urls)
 ]
