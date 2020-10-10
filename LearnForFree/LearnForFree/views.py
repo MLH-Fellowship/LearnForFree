@@ -8,7 +8,6 @@ from django.shortcuts import render
 
 from .models import course
 
-
 def index(request):
     return render(request, 'templates/index.html', {
         'error_message': "Error.!",
