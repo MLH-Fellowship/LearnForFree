@@ -2,22 +2,48 @@ import json
 
 
 class Course:
-    def __init__(self, coursename, coursedesc):
-        self.coursename = coursename
-        self.coursedesc = coursedesc
+    def __init__(self, course_name, course_desc, course_prov, course_link_url, course_img_url):
+        self.course_name = course_name
+        self.course_desc = course_desc
+        self.course_prov = course_prov
+        self.course_link_url = course_link_url
+        self.course_img_url = course_img_url
 
     def get_course_name(self):
-        return self.coursename
+        return self.course_name
 
     def get_course_desc(self):
-        return self.coursedesc
+        return self.course_desc
 
-    def set_course_name(self, coursename):
-        self.coursename = coursename
+    def get_course_prov(self):
+        return self.course_prov
 
-    def set_course_desc(self, coursedesc):
-        self.coursedesc = coursedesc
+    def get_course_link_url(self):
+        return self.course_link_url
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
+    def get_course_img_url(self):
+        return self.course_img_url
+
+    def set_course_name(self, course_name):
+        self.course_name = course_name
+
+    def set_course_desc(self, course_desc):
+        self.course_desc = course_desc
+
+    def set_course_prov(self, course_prov):
+        self.course_prov = course_prov
+
+    def set_course_link_url(self, course_link_url):
+        self.course_link_url = course_link_url
+
+    def set_course_img_url(self, course_img_url):
+        self.course_img_url = course_img_url
+
+    def as_dict(self):
+        return dict(
+            course_name=self.course_name,
+            course_desc=self.course_desc,
+            course_prov=self.course_prov,
+            course_link_url=self.course_link_url,
+            course_img_url=self.course_img_url
+        )
