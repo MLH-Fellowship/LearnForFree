@@ -18,10 +18,16 @@ def results(request, keywords):
     # with open('content_provider_config.json') as f:
     #    data = json.load(f)
 
+    #provider_data = {
+    #    "name": "futurelearn",
+    #    "web_search_url": "https://www.futurelearn.com/search?q="
+    #}
+
     provider_data = {
-        "name": "futurelearn",
-        "web_search_url": "https://www.futurelearn.com/search?q="
+        "name": "who",
+        "web_search_url": "https://openwho.org/courses?lang=en&q="
     }
+
 
     provider = content_provider.ContentProvider(provider_data)
     resultlist = provider.provide(keywords);

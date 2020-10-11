@@ -24,6 +24,8 @@ class Scrape:
             data = self.scrape_data_edx()
         elif self.name == 'futurelearn':
             data = self.scrape_data_fl()
+        elif self.name == 'who':
+            data = self.scrape_data_who()
         else:
             raise NotImplementedError
         return data
@@ -62,6 +64,25 @@ class Scrape:
             href = html_course.div.h3.a["href"]
             link = 'https://www.futurelearn.com' + href
             img_link = ''
+
+            crs = course.Course(title, desc, self.name, link, img_link)
+            crses.append(crs)
+        return crses
+
+    def scrape_data_who(self):
+        crses = []
+        url = self.url + self.keyword
+        dom = BeautifulSoup(requests.get(url).text, 'html.parser')
+        html_courses = dom.find_all("div", attrs={"class": "course-group"})[0]
+        html_courses = html_courses.find_all("div", attrs={"class": "course-item"})
+        for html_course in html_courses:
+            title = html_course.find_all("div", attrs={"class": "course-title"}).div.h4.a["title"]
+            print(title)
+            desc = html_course.find_all("div", attrs={"class": "course-description"}).div.div.p.contents
+            href = html_course.find_all("div", attrs={"class": "course-title"}).div.h4.a["href"]
+            link = 'https://www.openwho.org' + href
+            img_link = html_course.find_all("a", attrs={"class": "course-image"}).a.picture.source["srcset"]
+            img_link = img_link.split(",")[0]
 
             crs = course.Course(title, desc, self.name, link, img_link)
             crses.append(crs)
