@@ -19,15 +19,17 @@ def results(request, keywords):
     #    data = json.load(f)
 
     provider_data = {
-        "name": "edx",
-        "web_search_url": "https://www.edx.org/search?q="
+        "name": "futurelearn",
+        "web_search_url": "https://www.futurelearn.com/search?q="
     }
 
     provider = content_provider.ContentProvider(provider_data)
     resultlist = provider.provide(keywords);
+    results = []
     for result in resultlist:
         result = result.as_dict()
+        results.append(result)
 
     print(resultlist)
 
-    return JsonResponse(resultlist, safe=False)
+    return JsonResponse(results, safe=False)

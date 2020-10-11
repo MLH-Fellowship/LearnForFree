@@ -22,6 +22,8 @@ class Scrape:
     def scrape_data(self):
         if self.name == 'edx':
             data = self.scrape_data_edx()
+        elif self.name == 'futurelearn':
+            data = self.scrape_data_fl()
         else:
             raise NotImplementedError
         return data
@@ -43,6 +45,23 @@ class Scrape:
             link = 'https://www.edx.org' + href
             # img_link = html_course.div.div.div.img["href"]
             img_link = 'https://s3.amazonaws.com/media.al-fanarmedia.org/wp-content/uploads/2020/04/06213216/edx.jpg'
+
+            crs = course.Course(title, desc, self.name, link, img_link)
+            crses.append(crs)
+        return crses
+
+    def scrape_data_fl(self):
+        crses = []
+        url = self.url + self.keyword
+        dom = BeautifulSoup(requests.get(url).text, 'html.parser')
+        html_courses = dom.find_all("li", attrs={"class": "m-link-list__item"})
+        for html_course in html_courses:
+            title = html_course.div.h3.a.contents
+            print(title)
+            desc = html_course.div.p.contents
+            href = html_course.div.h3.a["href"]
+            link = 'https://www.futurelearn.com' + href
+            img_link = ''
 
             crs = course.Course(title, desc, self.name, link, img_link)
             crses.append(crs)
