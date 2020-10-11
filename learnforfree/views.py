@@ -7,6 +7,7 @@ from django.core import serializers
 from django.shortcuts import render
 
 from .models import course
+from .models import content_provider
 
 def index(request):
     return render(request, 'templates/index.html', {
@@ -14,13 +15,19 @@ def index(request):
     })
 
 def results(request, keywords):
-    result1 = course.Course('Course name 1', 'Lorem ipsum description 1', 'Coursera',
-                            'https://www.coursera.org/',
-                            'https://storage-prtl-co.imgix.net/endor/organisations/17569/logos/1511918356_Coursera.png')
-    result2 = course.Course('Course name 2', 'Lorem ipsum description 2', 'edX',
-                            'https://www.edx.org/',
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWOwoKSJqRKu-9-FD_-nsVhJWOSiGAIPHTRQ&usqp=CAU')
-    resultlist = [result1.as_dict(), result2.as_dict()]
+    # with open('content_provider_config.json') as f:
+    #    data = json.load(f)
+
+    provider_data = {
+        "name": "edx",
+        "web_search_url": "https://www.edx.org/search?q="
+    }
+
+    provider = content_provider.ContentProvider(provider_data)
+    resultlist = provider.provide(keywords);
+    for result in resultlist:
+        result = result.as_dict()
+
     print(resultlist)
 
     return JsonResponse(resultlist, safe=False)

@@ -1,0 +1,14 @@
+{
+	"api-based": {
+	},
+	"html-based": {
+		"edX": {
+			"name": "edX",
+			"web_search_url": "https://www.edx.org/search?q="
+		},
+		"coursera": {
+			"name": "Coursera",
+			"web_search_url": "https://www.coursera.org/search?query="
+		}
+	}
+}
