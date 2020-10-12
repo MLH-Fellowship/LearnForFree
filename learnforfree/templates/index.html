@@ -2,29 +2,40 @@
 {% extends "templates/base_generic.html" %}
 
 {% block content %}
-<h2 class="title text-center mt-5">Find Free Courses</h2>
+<header class="site-header">
+	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+	    <div class="container">
+	      <a class="navbar-brand ml-5" href="#">LearnForFree</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+	        <!-- <div class="navbar-nav mr-auto">
+	          <a class="nav-item nav-link" href="#">Home</a>
+	          <a class="nav-item nav-link" href="#">About</a>
+	        </div> -->
 
-<div class="container">
-    <row>
-        <div class="form-group row mt-2">
-            <input style="height: 6vh; border-radius: 10px;" type="search" class="form-control" placeholder="What do you want to learn today?">
-        </div>
-    </row>
-    
-    <row class="text-center">
-        <div class="col-12 col-sm-4 col-md-8 col-lg-7 mt-5 mx-auto">
-            <h2 class="title-italic">What is this?</h2>
-            <h5 class="text-justify g-mt-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h5>
-        </div>
-        <div class="col-12 col-sm-8 col-md-8 col-lg-7 mt-5 mx-auto">
-            <h2 class="title-italic">Why?</h2>
-            <h5 class="text-justify g-mt-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h5>
-        </div>
-    </row>
+          <div class="navbar-nav mx-auto">
+	          <a class="nav-item nav-link" href="#">My Courses</a>
+	        </div>
 
-    <row class="text-center">
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav ml-auto">
+	          <a class="nav-item nav-link" href="#">Login</a>
+	          <a class="nav-item nav-link" href="#">Register</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+	</header>
 
-    </row>
+<div class="backgroundImage">
+    <img src="../static/hero_1.jpg" class='backImage' alt="landingpage">
+    <!--search box-->
+    <div class="form-group searchbox">
+        <input style="height: 6vh; border-radius: 10px;" type="search" class="form-control"
+        placeholder="What do you want to learn today?">
+    </div>
 </div>
 
 {% endblock %}
