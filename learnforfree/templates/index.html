@@ -2,33 +2,6 @@
 {% extends "templates/base_generic.html" %}
 
 {% block content %}
-<header class="site-header">
-	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-	    <div class="container">
-	      <a class="navbar-brand ml-5" href="#">LearnForFree</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	      </button>
-	      <div class="collapse navbar-collapse" id="navbarToggle">
-	        <!-- <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="#">Home</a>
-	          <a class="nav-item nav-link" href="#">About</a>
-	        </div> -->
-
-          <div class="navbar-nav mx-auto">
-	          <a class="nav-item nav-link" href="#">My Courses</a>
-	        </div>
-
-	        <!-- Navbar Right Side -->
-	        <div class="navbar-nav ml-auto">
-	          <a class="nav-item nav-link" href="#">Login</a>
-	          <a class="nav-item nav-link" href="#">Register</a>
-	        </div>
-	      </div>
-	    </div>
-	  </nav>
-	</header>
-
 <div class="backgroundImage">
     <img src="../static/hero_1.jpg" class='backImage' alt="landingpage">
     <!--search box-->    
@@ -37,7 +10,7 @@
             <input
                   class="form-control"
                   name="q"
-                  type="text" 
+                  type="search" 
                   style="height: 6vh; border-radius: 10px;" 
                   placeholder="What do you want to learn today?"
             >
