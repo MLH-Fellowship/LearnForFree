@@ -13,7 +13,7 @@ def index(request):
         'error_message': "Error.!",
     })
 
-def results(request, keywords):
+def results(request):
     result1 = course.Course('Course name 1', 'Lorem ipsum description 1', 'Coursera',
                             'https://www.coursera.org/',
                             'https://storage-prtl-co.imgix.net/endor/organisations/17569/logos/1511918356_Coursera.png')
@@ -21,6 +21,6 @@ def results(request, keywords):
                             'https://www.edx.org/',
                             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWOwoKSJqRKu-9-FD_-nsVhJWOSiGAIPHTRQ&usqp=CAU')
     resultlist = [result1.as_dict(), result2.as_dict()]
-    print(resultlist)
+    print(result1)
 
-    return JsonResponse(resultlist, safe=False)
+    return render(request, 'templates/search.html', {"resultlist":resultlist})

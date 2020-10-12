@@ -31,10 +31,18 @@
 
 <div class="backgroundImage">
     <img src="../static/hero_1.jpg" class='backImage' alt="landingpage">
-    <!--search box-->
-    <div class="form-group searchbox">
-        <input style="height: 6vh; border-radius: 10px;" type="search" class="form-control"
-        placeholder="What do you want to learn today?">
+    <!--search box-->    
+        <form action="{% url 'search_results' %}" method="get">
+          <div class="form-group searchbox">
+            <input
+                  class="form-control"
+                  name="q"
+                  type="text" 
+                  style="height: 6vh; border-radius: 10px;" 
+                  placeholder="What do you want to learn today?"
+            >
+          </div>
+        </form>
     </div>
 </div>
 

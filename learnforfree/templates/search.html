@@ -1,0 +1,19 @@
+{% extends "templates/base_generic.html" %}
+{% block content %}
+    <div class='container'>
+        <h3>List of Free Courses</h3>
+	    {% for course in resultlist %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <h5 class="article-title">{{ course.course_name }}</h5>
+                    <div class="article-metadata">
+                        <p>{{course.course_desc}}</p>
+                        <p>{{course.course_prov}}</p>
+                        <p>{{course.course_link_url}}</p>
+                        <p>{{course.course_img_url}}</p>
+                    </div>            
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+{% endblock %}  
