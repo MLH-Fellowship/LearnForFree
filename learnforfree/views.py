@@ -24,8 +24,8 @@ def results(request, keywords):
     #}
 
     provider_data = {
-        "name": "who",
-        "web_search_url": "https://openwho.org/courses?lang=en&q="
+        "name": "edx",
+        "web_search_url": "https://www.edx.org/"
     }
 
 

@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+from search.elastic import SearchEngine
+
 from . import course
 
+# edx search engine module
+import search.elastic
 
 class ContentProvider:
     def __init__(self, provider_data):
@@ -32,24 +36,12 @@ class Scrape:
 
     def scrape_data_edx(self):
         crses = []
-        url = self.url + self.keyword + '&tab=course'
-        dom = BeautifulSoup(requests.get(url).text, 'html.parser')
-        html_courses = dom.find_all("div", attrs={"class": "discovery-card"})
-        html_courses.pop(0)
-        html_courses.pop(0)
-        html_courses.pop(0)
-        html_courses.pop(0)
-        for html_course in html_courses:
-            title = html_course["aria-label"]
-            print(title)
-            desc = ''
-            href = html_course.a["href"]
-            link = 'https://www.edx.org' + href
-            # img_link = html_course.div.div.div.img["href"]
-            img_link = 'https://s3.amazonaws.com/media.al-fanarmedia.org/wp-content/uploads/2020/04/06213216/edx.jpg'
 
-            crs = course.Course(title, desc, self.name, link, img_link)
-            crses.append(crs)
+        search_engine = SearchEngine.get_search_engine(index="courseware_index")
+        print(search_engine)
+        exit()
+        
+        crses = search_engine.search(query_string=self.keyword)
         return crses
 
     def scrape_data_fl(self):
