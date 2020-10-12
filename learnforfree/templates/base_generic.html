@@ -9,9 +9,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     {% block title %}<title>Local Library</title>{% endblock %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/site.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'learnforfree/style.css' %}">
   </head>
   <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand ml-5" href="{% url 'index' %}">LearnForFree</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <!-- <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="#">Home</a>
+              <a class="nav-item nav-link" href="#">About</a>
+            </div> -->
+
+            <div class="navbar-nav mx-auto">
+              <a class="nav-item nav-link" href="#">My Courses</a>
+            </div>
+
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav ml-auto">
+              <a class="nav-item nav-link" href="#">Login</a>
+              <a class="nav-item nav-link" href="#">Register</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     {% block content %}{% endblock %}
 
