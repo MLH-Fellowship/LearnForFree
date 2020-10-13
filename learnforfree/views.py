@@ -14,22 +14,24 @@ def index(request):
         'error_message': "Error.!",
     })
 
-def results(request, keywords):
+def results(request):
+    request_value = request.GET.get('q')
+
     # with open('content_provider_config.json') as f:
     #    data = json.load(f)
 
-    #provider_data = {
-    #    "name": "futurelearn",
-    #    "web_search_url": "https://www.futurelearn.com/search?q="
-    #}
-
     provider_data = {
-        "name": "edx",
-        "web_search_url": "https://www.edx.org/"
+       "name": "futurelearn",
+       "web_search_url": "https://www.futurelearn.com/search?q="
     }
 
+    # provider_data = {
+    #     "name": "edx",
+    #     "web_search_url": "https://www.edx.org/"
+    # }
+
     provider = content_provider.ContentProvider(provider_data)
-    resultlist = provider.provide(keywords);
+    resultlist = provider.provide(request_value);
     results = []
     for result in resultlist:
         result = result.as_dict()
