@@ -24,6 +24,6 @@ urlpatterns = [
     # root/index
     path('', views.index, name='index'),
     # ex: search/javascript/
-    path('search/', views.results, name='search_course'),
+    path('search/', views.results, name="search_course"),
     path('admin/', admin.site.urls)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
