@@ -81,9 +81,6 @@ DATABASES = {
     }
 }
 
-# edx search engine preference
-
-# SEARCH_ENGINE = 'elasticsearch.Elasticsearch'
 SEARCH_ENGINE = 'search.elastic.ElasticSearchEngine'
 
 

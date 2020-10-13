@@ -20,15 +20,15 @@ def results(request):
     # with open('content_provider_config.json') as f:
     #    data = json.load(f)
 
-    provider_data = {
-       "name": "futurelearn",
-       "web_search_url": "https://www.futurelearn.com/search?q="
-    }
+    #provider_data = {
+    #   "name": "futurelearn",
+    #   "web_search_url": "https://www.futurelearn.com/search?q="
+    #}
 
-    # provider_data = {
-    #     "name": "edx",
-    #     "web_search_url": "https://www.edx.org/"
-    # }
+    provider_data = {
+        "name": "edx",
+        "web_search_url": "https://www.edx.org/"
+    }
 
     provider = content_provider.ContentProvider(provider_data)
     resultlist = provider.provide(request_value);

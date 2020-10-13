@@ -7,6 +7,10 @@ import json
 
 # edx search engine module
 import search.elastic
+import time
+import objectpath
+
+import re
 
 class ContentProvider:
     def __init__(self, provider_data):
@@ -37,23 +41,32 @@ class Scrape:
 
     def scrape_data_edx(self):
 
-
         crses = []
 
-        page = 1
-        f = open("edx_courses.json", "r")
+        #page = 1
+        #f = open("edx_courses.json", "w")
+        #url1 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=1"
+        #url2 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=2"
+        #url3 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=3"
 
-        while(True):
-            url = 'https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=' + str(page)
-            response = requests.get(url)
-            json_data = response.json()
-            if "developer_message" in json_data:
-                break
-            f.write(json.dumps(json_data))
+        #response = requests.get(url1)
+        #json_data = "{\n\"page1\":" + response.text + ",\n\"page2\":"
+        #response = requests.get(url2)
+        #json_data = json_data + response.text + ",\n\"page3\":"
+        #response = requests.get(url3)
+        #json_data = json_data + response.text + "\n}"
+        #f.write(json_data)
 
-            page+=1
+        #exit()
 
-        f.close()
+        with open("edx_courses.json") as f:
+            line = f.read()
+            file = json.loads(line)
+
+        tree_obj = objectpath.Tree(file)
+        print(tuple(tree_obj.execute('$..name')))
+
+        print(crses)
 
 
         return crses
