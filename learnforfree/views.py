@@ -28,7 +28,6 @@ def results(request, keywords):
         "web_search_url": "https://www.edx.org/"
     }
 
-
     provider = content_provider.ContentProvider(provider_data)
     resultlist = provider.provide(keywords);
     results = []
@@ -36,6 +35,7 @@ def results(request, keywords):
         result = result.as_dict()
         results.append(result)
 
-    print(resultlist)
+    # print(resultlist)
 
-    return JsonResponse(results, safe=False)
+    #return JsonResponse(results, safe=False)
+    return render(request, 'templates/index.html', {"results": results})
