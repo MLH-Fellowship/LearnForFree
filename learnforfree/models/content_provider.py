@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from search.elastic import SearchEngine
 
 from . import course
+import json
 
 # edx search engine module
 import search.elastic
@@ -35,13 +36,26 @@ class Scrape:
         return data
 
     def scrape_data_edx(self):
+
+
         crses = []
 
-        search_engine = SearchEngine.get_search_engine(index="courseware_index")
-        print(search_engine)
-        exit()
-        
-        crses = search_engine.search(query_string=self.keyword)
+        page = 1
+        f = open("edx_courses.json", "r")
+
+        while(True):
+            url = 'https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=' + str(page)
+            response = requests.get(url)
+            json_data = response.json()
+            if "developer_message" in json_data:
+                break
+            f.write(json.dumps(json_data))
+
+            page+=1
+
+        f.close()
+
+
         return crses
 
     def scrape_data_fl(self):
