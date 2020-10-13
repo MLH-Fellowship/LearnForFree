@@ -69,10 +69,11 @@
       var query = $(this).val();
       $.ajax({
         url: 'search_course',
-        data: { 'query': query },
+        data: { 'keywords': query },
         dataType: 'json',
         success: function (data) {
-          $(#search_results).html(data);
+          console.log(data);
+          // $(#search_results).html(data);
         }
       });
     });
