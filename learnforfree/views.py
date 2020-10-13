@@ -15,7 +15,7 @@ def index(request):
     })
 
 def results(request):
-    request_value = request.GET.get('keywords')
+    request_value = request.GET.get('keywords', "")
 
     # with open('content_provider_config.json') as f:
     #    data = json.load(f)
