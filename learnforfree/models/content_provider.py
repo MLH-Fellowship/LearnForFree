@@ -75,19 +75,26 @@ class Scrape:
 
         with open("edx_courses.json", "r", encoding="utf-8") as f:
             file = json.load(f)
-            print(file)
+
+
 
         tree_obj = objectpath.Tree(file)
 
-        for obj in tree_obj.execute('$..name'):
-            if 'Java' in str(obj): #todo: make sure to handle lowercase here
-                print(obj)
+        names = []
 
-        #todo: create course objects and pass them here
-        print(crses)
-        exit()
-        #print("typeof file: " + str(type(file)))
-
+        for results in tree_obj.execute('$..results'):
+            for result_key, result_content in results.items():
+                img_url = ''
+                if result_key == "media":
+                    img_url = result_content.get("image").get("small")
+                if result_key == "name":
+                    if self.keyword.lower() in result_content.lower():
+                        name = result_content
+                        if name not in names:
+                            names.append(name)
+                        else:
+                            continue # there are some duplicates
+                        crses.append(course.Course(name, 'Course description', self.name, 'some_url', img_url))
 
         return crses
 
