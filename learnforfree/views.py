@@ -7,20 +7,43 @@ from django.core import serializers
 from django.shortcuts import render
 
 from .models import course
+from .models import content_provider
 
 def index(request):
     return render(request, 'templates/index.html', {
         'error_message': "Error.!",
     })
 
-def results(request, keywords):
-    result1 = course.Course('Course name 1', 'Lorem ipsum description 1', 'Coursera',
-                            'https://www.coursera.org/',
-                            'https://storage-prtl-co.imgix.net/endor/organisations/17569/logos/1511918356_Coursera.png')
-    result2 = course.Course('Course name 2', 'Lorem ipsum description 2', 'edX',
-                            'https://www.edx.org/',
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTWOwoKSJqRKu-9-FD_-nsVhJWOSiGAIPHTRQ&usqp=CAU')
-    resultlist = [result1.as_dict(), result2.as_dict()]
-    print(resultlist)
+def results(request):
+    request_value = request.GET.get('keywords', "")
 
-    return JsonResponse(resultlist, safe=False)
+    # with open('content_provider_config.json') as f:
+    #    data = json.load(f)
+
+    #provider_data = {
+    #   "name": "Futurelearn",
+    #   "web_search_url": "https://www.futurelearn.com/search?q="
+    #}
+
+    #provider_data = {
+    #    "name": "edX",
+    #    "web_search_url": "https://www.edx.org/"
+    #}
+
+    with open("content_provider_config.json", "r", encoding="utf-8") as f:
+        config = json.load(f)
+
+    results = []
+
+    for prov_name, prov_data in config.items():
+        print(prov_data)
+        provider = content_provider.ContentProvider(prov_data)
+        resultlist = provider.provide(request_value);
+        for result in resultlist:
+            result = result.as_dict()
+            results.append(result)
+
+    # print(resultlist)
+
+    #return JsonResponse(results, safe=False)
+    return render(request, 'templates/index.html', {"results": results})
