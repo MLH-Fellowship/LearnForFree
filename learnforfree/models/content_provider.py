@@ -43,30 +43,50 @@ class Scrape:
 
         crses = []
 
-        #page = 1
-        #f = open("edx_courses.json", "w")
-        #url1 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=1"
-        #url2 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=2"
-        #url3 = "https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=3"
+        # DONT RUN THE CODE
+        # this script below fetches data from the edx api and saves it locally in the root
+        # we use this file to then search for courses.
+        # the file is already fetched! it takes 1hr
 
-        #response = requests.get(url1)
-        #json_data = "{\n\"page1\":" + response.text + ",\n\"page2\":"
-        #response = requests.get(url2)
-        #json_data = json_data + response.text + ",\n\"page3\":"
-        #response = requests.get(url3)
-        #json_data = json_data + response.text + "\n}"
-        #f.write(json_data)
-
+        #page = 0
+        #f = open("edx_courses.json", "w", encoding="utf-8")
+        #while True:
+        #    page += 1
+        #    url = 'https://courses.edx.org/api/courses/v1/courses?page_size=3000&page=' + str(page)
+        #    json_data = ''
+        #    try:
+        #        response = requests.get(url)
+        #        if response.status_code == 404:
+        #            raise BufferError
+        #        if page == 1:
+        #            json_data += '{\n'
+        #        key = '\"page' + str(page) + '\":\n'
+        #        json_data += key
+        #        json_data += response.text
+        #        json_data += ',\n'
+        #        f.write(json_data)
+        #    except:
+        #        <last char which is a , needs to be removed!>
+        #        json_data += '}'
+        #        f.write(json_data)
+        #        f.close()
+        #        break
         #exit()
 
-        with open("edx_courses.json") as f:
-            line = f.read()
-            file = json.loads(line)
+        with open("edx_courses.json", "r", encoding="utf-8") as f:
+            file = json.load(f)
+            print(file)
 
         tree_obj = objectpath.Tree(file)
-        print(tuple(tree_obj.execute('$..name')))
 
+        for obj in tree_obj.execute('$..name'):
+            if 'Java' in str(obj): #todo: make sure to handle lowercase here
+                print(obj)
+
+        #todo: create course objects and pass them here
         print(crses)
+        exit()
+        #print("typeof file: " + str(type(file)))
 
 
         return crses
