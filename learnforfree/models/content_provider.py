@@ -29,9 +29,9 @@ class Scrape:
         self.keyword = keyword
 
     def scrape_data(self):
-        if self.name == 'edx':
+        if self.name == 'edX':
             data = self.scrape_data_edx()
-        elif self.name == 'futurelearn':
+        elif self.name == 'Futurelearn':
             data = self.scrape_data_fl()
         elif self.name == 'who':
             data = self.scrape_data_who()
@@ -75,8 +75,6 @@ class Scrape:
 
         with open("edx_courses.json", "r", encoding="utf-8") as f:
             file = json.load(f)
-
-
 
         tree_obj = objectpath.Tree(file)
 

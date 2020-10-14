@@ -21,21 +21,27 @@ def results(request):
     #    data = json.load(f)
 
     #provider_data = {
-    #   "name": "futurelearn",
+    #   "name": "Futurelearn",
     #   "web_search_url": "https://www.futurelearn.com/search?q="
     #}
 
-    provider_data = {
-        "name": "edx",
-        "web_search_url": "https://www.edx.org/"
-    }
+    #provider_data = {
+    #    "name": "edX",
+    #    "web_search_url": "https://www.edx.org/"
+    #}
 
-    provider = content_provider.ContentProvider(provider_data)
-    resultlist = provider.provide(request_value);
+    with open("content_provider_config.json", "r", encoding="utf-8") as f:
+        config = json.load(f)
+
     results = []
-    for result in resultlist:
-        result = result.as_dict()
-        results.append(result)
+
+    for prov_name, prov_data in config.items():
+        print(prov_data)
+        provider = content_provider.ContentProvider(prov_data)
+        resultlist = provider.provide(request_value);
+        for result in resultlist:
+            result = result.as_dict()
+            results.append(result)
 
     # print(resultlist)
 
