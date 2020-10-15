@@ -2,13 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from search.elastic import SearchEngine
+# from search.elastic import SearchEngine
 
 from . import course
 import json
 
 # edx search engine module
-import search.elastic
 import time
 import objectpath
 

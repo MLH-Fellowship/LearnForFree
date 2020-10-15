@@ -1,0 +1,68 @@
+{% extends "templates/base_generic.html" %}
+
+{% block content %}
+    <div class="container">
+        <!--search results-->
+        <h3 class="text-center p-2 m-2">List of Free Courses</h3>
+        <div class="h-100">
+            <div class="row align-middle">
+                {% if results %}
+                    <div class="d-flex flex-wrap" id="search_results">
+                        <!--loop thru each result-->
+                        {% for course in results %}
+                            <div class="col-md-6 col-lg-4 column">
+                                <div class="card gr-1 m-2 p-2 bg-dark">
+                                    <div class="txt">
+                                        <h5 class="article-title">{{ course.course_name |truncatechars:40}}</h5>
+                                        <p>{{course.course_desc|truncatechars:50 }}</p>
+                                        <p>{{course.course_prov}}</p>
+                                    </div>
+                                    <!--<a href="{{course.course_img_url}}">Course Image Link</a>-->
+                                    <a href="{{course.course_link_url}}"
+                                       target="_blank"
+                                       id='courselink'
+                                       class='btn btn-outline-info'>
+                                        Take the Course
+                                    </a>
+                                    <div class="ico-card">
+                                        <i class="fa fa-empire"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="txt">
+                        <h3 class="article-title">No search results!</h3>
+                    </div>
+                {% endif%}
+            </div>
+        </div>
+
+        <!--pagination-->
+        {% if results.has_other_pages %}
+            <div class="p-3 m-3" >
+                <ul class="pagination text-center">
+                    {% if results.has_previous %}
+                        <li><a href="?page={{ results.previous_page_number }}&keywords={{ results.keywords }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in results.paginator.page_range %}
+                        {% if results.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}&keywords={{ results.keywords }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if results.has_next %}
+                        <li><a href="?page={{ results.next_page_number }}&keywords={{ results.keywords }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

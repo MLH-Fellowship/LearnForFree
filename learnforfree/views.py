@@ -55,4 +55,8 @@ def results(request):
 
 
     #return JsonResponse(results, safe=False)
-    return render(request, 'templates/index.html', {"results": page_obj})
+    return render(
+        request,
+        'templates/search_results.html',
+        {"results": results, "results": page_obj}
+    )
