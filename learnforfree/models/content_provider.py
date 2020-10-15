@@ -107,7 +107,7 @@ class Scrape:
         html_courses = dom.find_all("li", attrs={"class": "m-link-list__item"})
         for html_course in html_courses:
             title = html_course.div.h3.a.contents
-            print(title)
+            title = title[0]
             desc = html_course.div.p.contents
             href = html_course.div.h3.a["href"]
             link = 'https://www.futurelearn.com' + href
