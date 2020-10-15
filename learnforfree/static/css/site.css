@@ -16,3 +16,9 @@ h2.title-italic{
     font-weight: 600;
     font-size: 5vh;
 }
+
+li {
+    float: left;
+    list-style: outside none none;
+    padding-left: 5px;
+}
