@@ -12,12 +12,11 @@ of them. We are currently using, and will be using any techniques in order to ge
 pre-saving an index into a file, scraping, and even Selenium!
 
 ## List of providers with status
-- edX -  :white_check_mark: currently implemented via one-time fetching of the index into a file, and using it for the search.
-The edX also has an API but there's no uri for keyword search, making it extremely lengthy to do it this way.
-- Futurelearn - :white_check_mark: successfully implemented via web scraping
-- Coursera - :large_blue_diamond: To be implemented via Selenium (pagination is dynamic)
-- khan academy - :large_blue_diamond: To be researched (it doesnt have courses, but other materials
-such as articles, so we'll decide on how to incorporate that)
-- openwho dot org - :large_blue_diamond: To be implemented via Selenium (object population and pagination
-are dynamic)
-- alison - :large_blue_diamond: To be researched
+Provider name | Status | Message
+------- | ---- | -------------
+edX | :white_check_mark: | currently implemented via one-time fetching of the index into a file, and using it for the search. The edX also has an API but there's no uri for keyword search, making it extremely lengthy to do it this way.
+Futurelearn | :white_check_mark: | successfully implemented via web scraping
+Coursera | :large_blue_diamond: | To be implemented via Selenium (pagination is dynamic)
+khan academy | :large_blue_diamond: | To be researched (it doesnt have courses, but other materials such as articles, so we'll decide on how to incorporate that)
+openwho dot org | :large_blue_diamond: | To be implemented via Selenium (object population and pagination are dynamic)
+alison | :large_blue_diamond: | To be researched
