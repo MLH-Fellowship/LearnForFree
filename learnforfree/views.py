@@ -3,6 +3,7 @@ import json
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.core import serializers
+from django.core.paginator import Paginator
 
 from django.shortcuts import render
 
@@ -16,6 +17,8 @@ def index(request):
 
 def results(request):
     request_value = request.GET.get('keywords', "")
+    page_number = request.GET.get('page', 1)
+    page_size = request.GET.get('page_size', 10)
 
     # with open('content_provider_config.json') as f:
     #    data = json.load(f)
@@ -43,7 +46,13 @@ def results(request):
             result = result.as_dict()
             results.append(result)
 
-    # print(resultlist)
+    #paginate
+    paginator = Paginator(results, page_size)
+    page_obj = paginator.get_page(page_number)
+
+    # add keywords back to data to use on the frontend
+    page_obj.keywords = request_value
+
 
     #return JsonResponse(results, safe=False)
-    return render(request, 'templates/index.html', {"results": results})
+    return render(request, 'templates/index.html', {"results": page_obj})
