@@ -6,5 +6,9 @@
 	"edX": {
 		"name": "edX",
 		"web_search_url": "https://www.edx.org/search?q="
+	},
+	"coursera": {
+		"name": "coursera",
+		"web_search_url": "https://www.edx.org/search?query="
 	}
 }

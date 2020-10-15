@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from search.elastic import SearchEngine
 
 from . import course
@@ -35,6 +37,8 @@ class Scrape:
             data = self.scrape_data_fl()
         elif self.name == 'who':
             data = self.scrape_data_who()
+        elif self.name == 'coursera':
+            data = self.scape_coursera()
         else:
             raise NotImplementedError
         return data
@@ -130,5 +134,26 @@ class Scrape:
 
             crs = course.Course(title, desc, self.name, link, img_link)
             crses.append(crs)
+        return crses
+
+
+
+    def scape_coursera(self):
+        crses = []
+        # url = self.url + self.keyword
+        # # setup some options
+        # # these could be global
+        # options = Options()
+        # options.headless = True
+        # options.add_argument("--window-size=1920,1200")
+
+        # # create our chrome
+        # driver = webdriver.Chrome(options=options)
+        # driver.get(url)
+        # data = driver.find_elements_by_tag_name('a')
+        # data = driver.find_element_by_class_name('rc-DesktopSearchCard anchor-wrapper')
+        # print(data)
+        # driver.quit()
+
         return crses
 

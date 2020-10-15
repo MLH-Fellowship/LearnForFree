@@ -46,8 +46,11 @@ def results(request):
             result = result.as_dict()
             results.append(result)
 
+    #paginate
     paginator = Paginator(results, page_size)
     page_obj = paginator.get_page(page_number)
+
+    # add keywords back to data to use on the frontend
     page_obj.keywords = request_value
 
 
