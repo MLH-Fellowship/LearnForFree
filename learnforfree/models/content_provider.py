@@ -80,6 +80,7 @@ class Scrape:
         with open("edx_courses.json", "r", encoding="utf-8") as f:
             file = json.load(f)
 
+
         tree_obj = objectpath.Tree(file)
 
         names = []
