@@ -40,29 +40,34 @@
         </div>
 
         <!--pagination-->
-        {% if results.has_other_pages %}
-            <div class="p-3 m-3" >
-                <ul class="pagination text-center">
-                    {% if results.has_previous %}
-                        <li><a href="?page={{ results.previous_page_number }}&keywords={{ results.keywords }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in results.paginator.page_range %}
-                        {% if results.number == i %}
-                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        <div id='pagination-box'>
+            {% if results.has_other_pages %}
+                <div class="p-3 m-3">
+                    <ul class="pagination">
+                        {% if results.has_previous %}
+                            <li><a href="?page={{ results.previous_page_number }}&keywords={{ results.keywords }}">&laquo;</a></li>
                         {% else %}
-                        <li><a href="?page={{ i }}&keywords={{ results.keywords }}">{{ i }}</a></li>
+                            <li class="disabled"><span>&laquo;</span></li>
                         {% endif %}
-                    {% endfor %}
-                    {% if results.has_next %}
-                        <li><a href="?page={{ results.next_page_number }}&keywords={{ results.keywords }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            </div>
-        {% endif %}
+                        {% for i in results.paginator.page_range %}
+                            {% if results.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                            <li><a href="?page={{ i }}&keywords={{ results.keywords }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if results.has_next %}
+                            <li><a href="?page={{ results.next_page_number }}&keywords={{ results.keywords }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+            <a role='button' href="{% url 'index' %}" id='searchagin' class='pagination-box btn btn-outline-info' > 
+                Search Again
+            </a>
+        </div>
     </div>
 
 {% endblock %}
