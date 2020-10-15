@@ -17,7 +17,7 @@ def index(request):
 
 def results(request):
     request_value = request.GET.get('keywords', "")
-    page_number = request.GET.get('page_number', 1)
+    page_number = request.GET.get('page', 1)
     page_size = request.GET.get('page_size', 10)
 
     # with open('content_provider_config.json') as f:
@@ -48,6 +48,7 @@ def results(request):
 
     paginator = Paginator(results, page_size)
     page_obj = paginator.get_page(page_number)
+    page_obj.keywords = request_value
 
 
     #return JsonResponse(results, safe=False)
