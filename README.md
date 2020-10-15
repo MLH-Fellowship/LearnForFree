@@ -36,6 +36,7 @@ alison | :large_blue_diamond: | To be researched
 - requests
 - selenium
 - bs4
+- django-sass-processor
 
 ## How to run LearnForFree locally
 - Make sure your Python `env` satisfies the required dependencies. If it doesnt, run `pip install <dependency_name>`.
