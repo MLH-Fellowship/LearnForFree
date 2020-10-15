@@ -1,11 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
-from search.elastic import SearchEngine
+# from search.elastic import SearchEngine
 
 from . import course
 
 # edx search engine module
-import search.elastic
+# import search.elastic
 
 class ContentProvider:
     def __init__(self, provider_data):
@@ -37,9 +37,9 @@ class Scrape:
     def scrape_data_edx(self):
         crses = []
 
-        search_engine = SearchEngine.get_search_engine(index="courseware_index")
-        print(search_engine)
-        exit()
+        # search_engine = SearchEngine.get_search_engine(index="courseware_index")
+        # print(search_engine)
+        # exit()
         
         crses = search_engine.search(query_string=self.keyword)
         return crses

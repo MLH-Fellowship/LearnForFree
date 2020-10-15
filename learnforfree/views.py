@@ -40,4 +40,4 @@ def results(request):
     # print(resultlist)
 
     #return JsonResponse(results, safe=False)
-    return render(request, 'templates/index.html', {"results": results})
+    return render(request, 'templates/search_results.html', {"results": results})

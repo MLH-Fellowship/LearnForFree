@@ -20,15 +20,7 @@
             </div>
           </form>
         </div>
-      </div>
-
-      <!--<row>
-          <div class="form-group row ">
-              <input style="height: 6vh; border-radius: 10px;" type="search" class="form-control" placeholder="What do you want to learn today?">
-          </div>
-      </row>
-      -->
-      
+      </div>      
       <row class="text-center">
           <div class="col-12 col-sm-4 col-md-8 col-lg-7 mt-5 mx-auto">
               <h2 class="title-italic">What is this?</h2>
@@ -40,25 +32,7 @@
           </div>
       </row>
 
-      <row class="text-center">
-        <h3>List of Free Courses</h3>
-        {% if results %}
-          <div id="search_results">
-            {% for course in results %}
-              <article class="media content-section">
-                  <div class="media-body">
-                      <h5 class="article-title">{{ course.course_name }}</h5>
-                      <div class="article-metadata">
-                          <p>{{course.course_desc}}</p>
-                          <p>{{course.course_prov}}</p>
-                          <p>{{course.course_link_url}}</p>
-                          <p>{{course.course_img_url}}</p>
-                      </div>            
-                  </div>
-              </article>
-            {% endfor %}
-          </div>
-        {% endif %}          
+      <row class="text-center">      
       </row>
     </div>
 {% endblock %}
@@ -73,7 +47,7 @@
         dataType: 'json',
         success: function (data) {
           console.log(data);
-          // $(#search_results).html(data);
+          $(#search_results).html(data);
         }
       });
     });

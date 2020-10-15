@@ -16,3 +16,7 @@ h2.title-italic{
     font-weight: 600;
     font-size: 5vh;
 }
+
+#courselink {
+    text-decoration: none;
+}
