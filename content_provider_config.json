@@ -1,0 +1,14 @@
+{
+	"Futurelearn": {
+			"name": "Futurelearn",
+			"web_search_url": "https://www.futurelearn.com/search?q="
+	},
+	"edX": {
+		"name": "edX",
+		"web_search_url": "https://www.edx.org/search?q="
+	},
+	"coursera": {
+		"name": "coursera",
+		"web_search_url": "https://www.edx.org/search?query="
+	}
+}

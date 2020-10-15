@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from search.elastic import SearchEngine
 
 from . import course
@@ -29,12 +31,14 @@ class Scrape:
         self.keyword = keyword
 
     def scrape_data(self):
-        if self.name == 'edx':
+        if self.name == 'edX':
             data = self.scrape_data_edx()
-        elif self.name == 'futurelearn':
+        elif self.name == 'Futurelearn':
             data = self.scrape_data_fl()
         elif self.name == 'who':
             data = self.scrape_data_who()
+        elif self.name == 'coursera':
+            data = self.scape_coursera()
         else:
             raise NotImplementedError
         return data
@@ -75,19 +79,25 @@ class Scrape:
 
         with open("edx_courses.json", "r", encoding="utf-8") as f:
             file = json.load(f)
-            #print(file)
+
 
         tree_obj = objectpath.Tree(file)
 
-        for obj in tree_obj.execute('$..name'):
-            if 'Java' in str(obj): #todo: make sure to handle lowercase here
-                print(obj)
+        names = []
 
-        #todo: create course objects and pass them here
-        print(crses)
-        exit()
-        #print("typeof file: " + str(type(file)))
-
+        for results in tree_obj.execute('$..results'):
+            for result_key, result_content in results.items():
+                img_url = ''
+                if result_key == "media":
+                    img_url = result_content.get("image").get("small")
+                if result_key == "name":
+                    if self.keyword.lower() in result_content.lower():
+                        name = result_content
+                        if name not in names:
+                            names.append(name)
+                        else:
+                            continue # there are some duplicates
+                        crses.append(course.Course(name, 'Course description', self.name, 'some_url', img_url))
 
         return crses
 
@@ -125,5 +135,26 @@ class Scrape:
 
             crs = course.Course(title, desc, self.name, link, img_link)
             crses.append(crs)
+        return crses
+
+
+
+    def scape_coursera(self):
+        crses = []
+        # url = self.url + self.keyword
+        # # setup some options
+        # # these could be global
+        # options = Options()
+        # options.headless = True
+        # options.add_argument("--window-size=1920,1200")
+
+        # # create our chrome
+        # driver = webdriver.Chrome(options=options)
+        # driver.get(url)
+        # data = driver.find_elements_by_tag_name('a')
+        # data = driver.find_element_by_class_name('rc-DesktopSearchCard anchor-wrapper')
+        # print(data)
+        # driver.quit()
+
         return crses
 
