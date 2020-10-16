@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,9 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-_7uc%bpvi22ak75k5g9x$en#gq(6o^_1ox2z#0e5$3j5tljib'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -73,6 +73,12 @@ WSGI_APPLICATION = 'learnforfree.wsgi.application'
 
 
 # Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
@@ -128,3 +134,5 @@ STATICFILES_FINDERS = [
 
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+
+django_heroku.settings(locals())
